@@ -39,21 +39,51 @@ jobs:
       working-directory: ./execution-engine
       run: npm install
       
+    - name: Check if dashboard directory exists
+      id: check_dashboard
+      run: |
+        if [ -d "dashboard" ]; then
+          echo "::set-output name=exists::true"
+        else
+          echo "::set-output name=exists::false"
+        fi
+      
     - name: Install Dashboard dependencies
+      if: steps.check_dashboard.outputs.exists == 'true'
       working-directory: ./dashboard
       run: npm install
     
-    - name: Lint code
+    - name: Lint API code
+      working-directory: ./api
       run: |
-        cd api && npm install eslint --save-dev && npx eslint --init -y || true
+        npm install eslint --save-dev || true
+        npx eslint --init -y || true
         npx eslint . --ext .js || true
-        cd ../execution-engine && npm install eslint --save-dev && npx eslint --init -y || true
+    
+    - name: Lint Execution Engine code
+      working-directory: ./execution-engine
+      run: |
+        npm install eslint --save-dev || true
+        npx eslint --init -y || true
         npx eslint . --ext .js || true
-        cd ../dashboard && npm install eslint --save-dev && npx eslint --init -y || true
+    
+    - name: Lint Dashboard code
+      if: steps.check_dashboard.outputs.exists == 'true'
+      working-directory: ./dashboard
+      run: |
+        npm install eslint --save-dev || true
+        npx eslint --init -y || true
         npx eslint src/ --ext .js,.jsx || true
     
-    - name: Run tests
-      run: |
-        cd api && npm test || true
-        cd ../execution-engine && npm test || true
-        cd ../dashboard && npm test -- --passWithNoTests || true
+    - name: Run API tests
+      working-directory: ./api
+      run: npm test || true
+      
+    - name: Run Execution Engine tests
+      working-directory: ./execution-engine
+      run: npm test || true
+      
+    - name: Run Dashboard tests
+      if: steps.check_dashboard.outputs.exists == 'true'
+      working-directory: ./dashboard
+      run: npm test -- --passWithNoTests || true
