@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.sidebar {
+  min-height: 100vh;
+  background-color: #343a40;
+  color: white;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.function-card {
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.function-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metrics-card {
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.status-badge {
+  font-size: 0.8rem;
+}
+
+.status-pending {
+  background-color: #ffc107;
+}
+
+.status-running {
+  background-color: #17a2b8;
+}
+
+.status-completed {
+  background-color: #28a745;
+}
+
+.status-failed {
+  background-color: #dc3545;
+}
+
+.execution-log {
+  background-color: #343a40;
+  color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: monospace;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.chart-container {
+  height: 300px;
+  margin-bottom: 30px;
+}
