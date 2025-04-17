@@ -1,0 +1,25 @@
+{
+  "name": "serverless-platform",
+  "version": "1.0.0",
+  "description": "A comprehensive serverless function platform similar to AWS Lambda",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:api\" \"npm run start:dashboard\"",
+    "start:api": "cd api && npm start",
+    "start:dashboard": "cd dashboard && npm start",
+    "install:all": "npm install && cd api && npm install && cd ../execution-engine && npm install && cd ../dashboard && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "serverless",
+    "lambda",
+    "faas",
+    "docker",
+    "gvisor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}
