@@ -1,6 +1,7 @@
 # Serverless Function Platform
 
 A comprehensive serverless function platform similar to AWS Lambda, with support for multiple virtualization technologies and a real-time monitoring dashboard.
+Inclusing a function definition, executution as well as longs and visualisations.
 
 ## Features
 
